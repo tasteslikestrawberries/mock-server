@@ -1,0 +1,42 @@
+/* Pattern for a route that responds with any mock data we want:
+ First create a folder in routes 
+with an index.js file, the folder name will determine the top-level path of the route. 
+Then the index.js file just has to contain:
+
+'use strict'
+module.exports = async function (fastify, opts) {
+  fastify.get('/', async function (request, reply) {
+    return {DATA HERE} //whatever mock data we wish to send as a response for that route.
+  })
+}
+
+*/
+
+/*the route handler function is also passed request and reply objects. These are conceptually 
+the same but functionally different to the req and res objects passed to the Node core http.createServer
+ request listener function in that they have their own (higher level) APIs.*/
+
+
+ /*Now let's open two terminal windows, one with the current working directory set to our project folder
+  and the other with the current working directory set to the mock-srv folder.
+  In the first terminal that has the current working directory set to our project folder run:
+
+serve static
+
+In the second terminal window that has the current working directory set to the mock-srv folder execute the following:
+
+npm run dev  -> navigate to localhost:5000 and check the terminals (it should be 'server listening at...') 
+-->We have created a mock service with two GET routes returning separate mock data. 
+
+
+/*It's extremely important to point out that we're not validating the incoming POST data. 
+It's a mock service so there is no need to do so. The only reason to add validation to a mock service 
+is if we needed to mock the flow of validation interactions between server and client.
+
+In a production scenario failing to sanitize and validate incoming POST data and then 
+sending that same POST data back in the response can lead to vulnerabilities.
+ For an example scenario see "Testing for Reflected Cross Site Scripting". 
+ If we were to add validation to our POST route, we would use Fastify route schema support. 
+ See Fastify's Documentation for more information.*/
+
+ */
